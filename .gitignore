@@ -1,0 +1,14 @@
+# Локальные секреты
+.env
+
+# Данные СУБД, если монтируются как bind-mount
+postgres_data/
+postgres_temptblspc/
+postgres_v81c_data/
+postgres_v81c_index/
+pgdata/
+
+# Служебное
+.DS_Store
+Thumbs.db
+*.log

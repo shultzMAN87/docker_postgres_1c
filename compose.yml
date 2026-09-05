@@ -1,0 +1,29 @@
+services:
+  postgresql:
+    build: .
+    container_name: postgresql
+    user: "postgres"
+    environment:
+      DB_USER: "${DB_USER:-postgres}"
+      DB_PASS: "${DB_PASS:-postgres}"
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    restart: always
+    volumes:
+      - pgdata:/pgdata
+
+  pgadmin:
+    image: 'dpage/pgadmin4'
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_EMAIL:-admin@example.com}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_PASSWORD:-root}"
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - "${PGADMIN_PORT:-5050}:5050"
+    restart: always
+    depends_on:
+      - postgresql
+
+volumes:
+  pgdata:
