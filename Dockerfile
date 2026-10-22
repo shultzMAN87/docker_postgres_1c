@@ -24,8 +24,8 @@ RUN mkdir /pgdata && chown postgres:postgres /pgdata
 # RUN mkdir /pgdata && chown postgres:postgres /pgdata && chmod 0700 /pgdata
 
 # Копирование и настройка скрипта (выполняется от root)
-COPY start.sh /
-RUN chmod +x /start.sh
+COPY start.sh /start.sh
+RUN sed -i 's/\r$//' /start.sh && chmod +x /start.sh
 
 # Указание тома для хранения данных
 VOLUME /pgdata
